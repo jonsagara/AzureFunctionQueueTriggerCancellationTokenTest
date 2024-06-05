@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.34929.205
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C94A8CF1-7F83-485B-8820-60FC04089F70}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunctionQueueTriggerCancellationTokenTest", "src\AzureFunctionQueueTriggerCancellationTokenTest\AzureFunctionQueueTriggerCancellationTokenTest.csproj", "{FA7E3695-38E0-4D21-99EF-7F724A64835A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA7E3695-38E0-4D21-99EF-7F724A64835A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA7E3695-38E0-4D21-99EF-7F724A64835A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA7E3695-38E0-4D21-99EF-7F724A64835A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA7E3695-38E0-4D21-99EF-7F724A64835A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {372E82E2-1D00-4734-91D4-AED2EC453C6C}
+	EndGlobalSection
+EndGlobal
