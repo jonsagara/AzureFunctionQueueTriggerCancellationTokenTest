@@ -73,3 +73,15 @@ This is a v4 Azure Function:
 	<PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="1.2.0" />
   </ItemGroup>
   ```
+
+  **NOTE**: you'll need to add a `local.settings.json` file to the project root with the following:
+
+  ```json
+  {
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "{actual Azure Storage connection string}",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"
+  }
+}
+  ```
