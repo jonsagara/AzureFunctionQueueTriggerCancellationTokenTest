@@ -1,3 +1,4 @@
+using System.Threading;
 using Azure.Storage.Queues.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
@@ -14,10 +15,12 @@ public class Function1
     }
 
     [Function(nameof(Function1))]
-    public async Task Run([QueueTrigger("test-queue")] QueueMessage message, CancellationToken cancellationToken)
+    public async Task Run([QueueTrigger("test-queue")] QueueMessage message, FunctionContext context, CancellationToken cancellationToken)
     {
         _logger.LogInformation($"C# Queue trigger function processed: {message.MessageText}");
         _logger.LogInformation("cancellationToken == CancellationToken.None? {IsEqual}", cancellationToken == CancellationToken.None);
+        _logger.LogInformation("context.CancellationToken == CancellationToken.None? {IsEqual}", context.CancellationToken == CancellationToken.None);
+        _logger.LogInformation("context.CancellationToken == cancellationToken? {IsEqual}", context.CancellationToken == cancellationToken);
 
         cancellationToken.Register(() =>
         {

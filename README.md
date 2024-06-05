@@ -53,6 +53,10 @@ I ran into this issue because we have a long running function in Azure that will
 2024-06-05 02:31:31.133 [Information] [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
 ```
 
+# Related
+
+- [Stack Overflow question](https://stackoverflow.com/q/78578960)
+
 # Technical Details
 
 This is a v4 Azure Function:
