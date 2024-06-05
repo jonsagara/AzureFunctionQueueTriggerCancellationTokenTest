@@ -56,6 +56,7 @@ I ran into this issue because we have a long running function in Azure that will
 # Related
 
 - [Stack Overflow question](https://stackoverflow.com/q/78578960)
+- [GitHub issue](https://github.com/Azure/azure-functions-dotnet-worker/issues/2510)
 
 # Technical Details
 
