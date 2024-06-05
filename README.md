@@ -46,9 +46,9 @@ public async Task Run([QueueTrigger("test-queue")] QueueMessage message, Cancell
 I ran into this issue because we have a long running function in Azure that will start executing, but somewhere in the middle of execution, we'll see a log message that the application is shutting down, and there are no errors or exceptions logged. The application is then left in a weird state.
 
 ```
-2024-06-05 02:31:15.782 [Information] [redacted legitimate activity]
-2024-06-05 02:31:15.860 [Information] [redacted legitimate activity]
-2024-06-05 02:31:15.866 [Information] [redacted legitimate activity]
+2024-06-05 02:31:15.782 [Information] [redacted legitimate activity, 1/250]
+2024-06-05 02:31:15.860 [Information] [redacted legitimate activity, 2/250]
+2024-06-05 02:31:15.866 [Information] [redacted legitimate activity, 3/250]
 2024-06-05 02:31:16.233 [Information] [Microsoft.Hosting.Lifetime] Application is shutting down...
 2024-06-05 02:31:31.133 [Information] [Microsoft.Hosting.Lifetime] Application started. Press Ctrl+C to shut down.
 ```
