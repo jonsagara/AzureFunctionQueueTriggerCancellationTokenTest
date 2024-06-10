@@ -37,6 +37,11 @@ public class Function1
             Console.WriteLine("CancellationToken Register callback invoked.");
         });
 
+        context.CancellationToken.Register(() =>
+        {
+            Console.WriteLine("FunctionContext CancellationToken Register callback invoked.");
+        });
+
         foreach (var ix in Enumerable.Range(start: 0, count: 1_000))
         {
             await Task.Delay(1_000);
