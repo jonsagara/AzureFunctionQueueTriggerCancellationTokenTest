@@ -139,6 +139,7 @@ I ran into this issue because we have a long running function in Azure that will
 
 - [Stack Overflow question](https://stackoverflow.com/q/78578960)
 - [GitHub issue](https://github.com/Azure/azure-functions-dotnet-worker/issues/2510)
+- [Documentation about using CancellationToken for graceful shutdown in the isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide?tabs=windows#cancellation-tokens)
 
 # Technical Details
 
