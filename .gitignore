@@ -17,3 +17,6 @@ App_Data/
 .vs/
 Logs/
 node_modules/
+
+# Azure Functions localsettings file
+local.settings.json
