@@ -3,7 +3,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace QueueTriggerCancellationTokenTestNET8Isolated;
+namespace QueueTriggerCancellationTokenTestNET6Isolated;
 
 public class Function1
 {
