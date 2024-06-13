@@ -10,7 +10,7 @@ When running a similar function in Azure, I tried to simulate shutting down by d
 
 ## The Question
 
-Why can't I observe a cancellation request inside my [QueueTrigger function](https://github.com/jonsagara/AzureFunctionQueueTriggerCancellationTokenTest/blob/bf25afb42ef25006145e6d7cdd9916a7ebb2bef0/src/QueueTriggerCancellationTokenTestNET8Isolated/Function1.cs#L17)?
+Why can't I observe a cancellation request inside my [QueueTrigger function](https://github.com/jonsagara/AzureFunctionQueueTriggerCancellationTokenTest/blob/a9a3c0e70406373730295b5f42c687d62e5f7799/src/QueueTriggerCancellationTokenTestNET8Isolated/Function1.cs#L18)?
 
 ```csharp
 [Function(nameof(Function1))]
