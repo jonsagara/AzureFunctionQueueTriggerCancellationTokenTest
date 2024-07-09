@@ -144,9 +144,9 @@ I ran into this issue because we have a long running function in Azure that will
 # Technical Details
 
 This is a v4 Azure Function:
-- Visual Studio 2022 17.11.0 Preview 1.1
+- Visual Studio 2022 17.11.0 Preview 3.0
 - Runtimes: both `dotnet-isolated` and `dotnet`
-- .NET: `8.0.6`, `6.0.31`
+- .NET: `8.0.7`, `6.0.32`
 - Function type: `QueueTrigger`
 
 **NOTE**: For `QueueTriggerCancellationTokenTestNET8Isolated` and `QueueTriggerCancellationTokenTestNET6Isolated`, you'll need to add a `local.settings.json` file to the project root with the following:
