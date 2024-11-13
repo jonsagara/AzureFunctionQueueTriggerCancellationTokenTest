@@ -2,7 +2,7 @@
 
 ## The Problem
 
-Inside my .NET 8 Isolated function, the `CancellationToken.IsCancellationRequested` property is never `true`, so I can't tell when the application is shutting down.
+Inside my .NET 9 Isolated function, the `CancellationToken.IsCancellationRequested` property is never `true`, so I can't tell when the application is shutting down.
 
 When running locally via Visual Studio, I tried to simulate shutting down the function by hitting `CTRL+C`, but the code that checks for cancellation is never hit.
 
@@ -43,6 +43,40 @@ public async Task Run([QueueTrigger("test-queue")] QueueMessage message, Cancell
 
 ### Output
 
+When running the `QueueTriggerCancellationTokenTestNET9Isolated` function, I get the following output:
+
+```
+[2024-11-13T16:10:44.968Z] Host lock lease acquired by instance ID '0000000000000000000000005864DAB7'.
+[2024-11-13T16:11:02.525Z] Executing 'Functions.Function1' (Reason='New queue message detected on 'test-queue'.', Id=242e5109-ec7d-444c-a5f8-0db15ceba51f)
+[2024-11-13T16:11:02.526Z] Trigger Details: MessageId: 0176ead9-f37a-4c3e-94a3-b00b1709c9e7, DequeueCount: 1, InsertedOn: 2024-11-13T16:11:03.000+00:00
+[2024-11-13T16:11:02.596Z] C# Queue trigger function processed: { "name": "jon" }
+[2024-11-13T16:11:02.598Z] cancellationToken == CancellationToken.None? False
+[2024-11-13T16:11:02.598Z] context.CancellationToken == CancellationToken.None? False
+[2024-11-13T16:11:02.599Z] context.CancellationToken == cancellationToken? True
+[2024-11-13T16:11:02.600Z] hostAppLifetime is null
+[2024-11-13T16:11:03.600Z] Cancellation not requested.
+[2024-11-13T16:11:04.603Z] Cancellation not requested.
+[2024-11-13T16:11:05.606Z] Cancellation not requested.
+[2024-11-13T16:11:06.613Z] Cancellation not requested.
+[2024-11-13T16:11:07.615Z] Cancellation not requested.
+[2024-11-13T16:11:08.615Z] Cancellation not requested.
+[2024-11-13T16:11:09.621Z] Cancellation not requested.
+[2024-11-13T16:11:10.625Z] Cancellation not requested.
+[2024-11-13T16:11:11.631Z] Cancellation not requested.
+[2024-11-13T16:11:12.634Z] Cancellation not requested.
+[2024-11-13T16:11:13.644Z] Cancellation not requested.
+[2024-11-13T16:11:14.658Z] Cancellation not requested.
+[2024-11-13T16:11:15.661Z] Cancellation not requested.
+[2024-11-13T16:11:16.666Z] Cancellation not requested.
+[2024-11-13T16:11:17.128Z] Host did not shutdown within its allotted time.
+```
+
+`cancellationToken.IsCancellationRequested` is never true.
+
+# Other Versions
+
+## .NET 8 Isolated
+
 When running the `QueueTriggerCancellationTokenTestNET8Isolated` function, I get the following output:
 
 ```
@@ -69,8 +103,6 @@ When running the `QueueTriggerCancellationTokenTestNET8Isolated` function, I get
 ```
 
 `cancellationToken.IsCancellationRequested` is never true.
-
-# Other Versions
 
 ## .NET 6 Isolated
 
@@ -144,12 +176,12 @@ I ran into this issue because we have a long running function in Azure that will
 # Technical Details
 
 This is a v4 Azure Function:
-- Visual Studio 2022 17.11.0 Preview 3.0
+- Visual Studio 2022 17.13.0 Preview 1.0
 - Runtimes: both `dotnet-isolated` and `dotnet`
-- .NET: `8.0.7`, `6.0.32`
+- .NET: `9.0.0`, `8.0.7`, `6.0.32`
 - Function type: `QueueTrigger`
 
-**NOTE**: For `QueueTriggerCancellationTokenTestNET8Isolated` and `QueueTriggerCancellationTokenTestNET6Isolated`, you'll need to add a `local.settings.json` file to the project root with the following:
+**NOTE**: For `QueueTriggerCancellationTokenTestNET9Isolated`, `QueueTriggerCancellationTokenTestNET8Isolated` and `QueueTriggerCancellationTokenTestNET6Isolated`, you'll need to add a `local.settings.json` file to the project root with the following:
 
 ```json
 {
