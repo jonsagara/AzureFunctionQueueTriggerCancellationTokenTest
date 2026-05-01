@@ -8,28 +8,26 @@ namespace QueueTriggerCancellationTokenTestNET9Isolated;
 public class Function1
 {
     private readonly ILogger<Function1> _logger;
+    private readonly IHostApplicationLifetime _lifetime;
 
-    public Function1(ILogger<Function1> logger)
+    public Function1(ILogger<Function1> logger, IHostApplicationLifetime lifetime)
     {
         _logger = logger;
+        _lifetime = lifetime;
     }
 
     [Function(nameof(Function1))]
-    public async Task Run([QueueTrigger("test-queue")] QueueMessage message, FunctionContext context, CancellationToken cancellationToken, IHostApplicationLifetime hostAppLifetime)
+    public async Task Run([QueueTrigger("test-queue")] QueueMessage message, FunctionContext context, CancellationToken cancellationToken)
     {
         _logger.LogInformation($"C# Queue trigger function processed: {message.MessageText}");
         _logger.LogInformation("cancellationToken == CancellationToken.None? {IsEqual}", cancellationToken == CancellationToken.None);
         _logger.LogInformation("context.CancellationToken == CancellationToken.None? {IsEqual}", context.CancellationToken == CancellationToken.None);
         _logger.LogInformation("context.CancellationToken == cancellationToken? {IsEqual}", context.CancellationToken == cancellationToken);
 
-        if (hostAppLifetime is not null)
+        _lifetime.ApplicationStopping.Register(() =>
         {
-            _logger.LogInformation("hostAppLifetime.ApplicationStopping == cancellationToken? {IsEqual}", hostAppLifetime.ApplicationStopping == cancellationToken);
-        }
-        else
-        {
-            _logger.LogInformation("hostAppLifetime is null");
-        }
+            Console.WriteLine("IHostApplicationLifetime ApplicationStopping Register callback invoked.");
+        });
 
         cancellationToken.Register(() =>
         {
